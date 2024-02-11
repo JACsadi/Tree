@@ -21,7 +21,7 @@
      else{
         build(initial,tree,(2*v)+1,l,m);
         build(initial,tree,(2*v)+2,m+1,r);
-        tree[v]=tree[1+(2*v)]<tree[1+(2*v)+1] ? tree[1+(2*v)] : tree[1+(2*v)+1]; 
+        tree[v]=tree[1+(2*v)]+tree[1+(2*v)+1]; 
      }
 }
 void update(int tree[], int dif,  int index, int l, int r,int v ) {
@@ -38,7 +38,7 @@ int sum(int tree[],int v, int s,int e,int l, int r)
     if(l==s && r==e) return tree[v];
     if(s>e) return INT_MAX;
     int m=(l+r)/2;
-    return sum(tree,(v*2)+1,s,Min(m,e), l, m) < sum(tree,(v*2)+2,Max(s,1+m),e , 1+(m),r) ? sum(tree,(v*2)+1,s,Min(m,e), l, m) : sum(tree,(v*2)+2,Max(s,1+m),e , 1+(m),r); 
+    return sum(tree,(v*2)+1,s,Min(m,e), l, m) + sum(tree,(v*2)+2,Max(s,1+m),e , 1+(m),r) ;
 }
 
 int main()
@@ -50,8 +50,6 @@ int init[n+1];
 for(int i=1;i<=n;i++)
     scanf("%d",&init[i]);
 int tree[4*n];
-for(int i=0;i<2*n;i++)
-    tree[i]=INT_MAX;
 build(init,tree,0,1,n);
 printf("Case %d:\n", casee);
 for(int i = 0; i <ele; i++) {
