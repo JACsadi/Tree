@@ -81,5 +81,8 @@ int main() {
         }   
         sortttt(arr,0,m-1);
         f(i,m) printf("%d ", arr[i].val);
+        f(i,m) {
+            bs(arr,m,a);
+        }
     }
 }
